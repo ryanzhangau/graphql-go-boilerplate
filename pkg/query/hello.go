@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/graphql-go/graphql"
-	"github.com/ryanzhangau/graphql-go/pkg/db"
+	"github.com/ryanzhangau/graphql-go/pkg/database"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
@@ -21,13 +21,13 @@ func Databases() *graphql.Field {
 	return &graphql.Field{
 		Type: graphql.NewList(graphql.String),
 		Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-			client, err := db.GetMongoDBConnect()
+			client, err := database.GetMongoDBConnect()
 
 			if err != nil {
 				log.Fatalf("database connect error: %v", err)
 			}
 
-			ctx, cancel := db.CreateContext()
+			ctx, cancel := database.CreateContext()
 			defer cancel()
 			defer client.Disconnect(ctx)
 
