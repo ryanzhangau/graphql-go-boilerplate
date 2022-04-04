@@ -4,7 +4,8 @@ import "github.com/graphql-go/graphql"
 
 func Query() graphql.ObjectConfig {
 	fields := graphql.Fields{
-		"hello": Hello(),
+		"hello":     Hello(),
+		"databases": Databases(),
 	}
 
 	rootQuery := graphql.ObjectConfig{Name: "RootQuery", Fields: fields}

@@ -51,6 +51,7 @@ func main() {
 		log.Fatalf("get env file failed, error: %v", err)
 	}
 
+	// GraphQL schema
 	schema := schema.Schema()
 
 	handler := handler.New(&handler.Config{
